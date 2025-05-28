@@ -14,7 +14,7 @@ namespace PropExample
         }
 
         // 오버로딩
-         public static int TestOver(int input) { return 0; }
-        public static bool TestOver(int input) { return true;  }
+        // public static int TestOver(int input) { return 0; }
+        public static bool TestOver(float input) { return true; }
     }
 }
