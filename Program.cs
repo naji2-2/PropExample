@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -51,7 +53,45 @@ namespace PropExample
             Console.WriteLine(box.Heigth);
             box.Width = 50;
             Console.WriteLine(box.Area);
-            
+
+            // 값 복사 vs 참조 복사 비교
+            // 값 복사(value) - 값이 매개변수로 복사되어 넘어가서 원본에 영향 X
+            int a = 10;
+            Change(a);
+            Console.WriteLine(a);
+
+            // 참조 복사(reference) - 객체의 레퍼런스(주소값)이 넘어가서 원본에 영향 O
+            Test test = new Test();
+            test.value = 10;
+            Change(test);
+            Console.WriteLine(test.value);  // test를 바로 출력하면 ToString이 호출됨
+
+            Test testA = new Test();
+            Test testB = testA;
+            testA.value = 10;
+            testB.value = 20;
+            Console.WriteLine(testA.value);
+
+        }
+
+        static void Change(int input)
+        {
+            input = 20;
+        }
+
+        static void Change(Test input)
+        {
+            input.value = 20;
+        }
+
+        class Test
+        {
+            public int value = 5;
+
+            public override string ToString()
+            {
+                return value.ToString();
+            }
         }
 
         // 오버로딩
